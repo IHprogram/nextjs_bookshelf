@@ -20,7 +20,7 @@ const Auth = () => {
 
         <div className="flex items-center justify-center">
           <div className="text-sm">
-            <span className="font-medium text-white hover:text-indig-500">
+            <span className="cursor-pointer font-medium text-white hover:text-indig-500">
               ユーザー登録はこちら
             </span>
           </div>
