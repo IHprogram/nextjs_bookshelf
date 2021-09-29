@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
-import Link from "next/link";
 import Header from "../components/Header";
+import Book from "../components/Book";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 
@@ -13,12 +13,11 @@ const Mainpage = () => {
     console.log(data);
     if (data.word === '') {
       setSearchResult([]);
-      console.log('データがありません')
     } else {
       axios.get("https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?", {
         params: {
-          applicationId: process.env.NEXT_PUBLIC_RAKUTEN_ID, //楽天でログインし、自分のアプリケーションIDを取得
-          title: data.word, //後で変数にし、検索フォームのキーワードで検索できるようにする
+          applicationId: process.env.NEXT_PUBLIC_RAKUTEN_ID,
+          title: data.word,
         },
       }).then(res => {
         console.log(res)
@@ -50,21 +49,7 @@ const Mainpage = () => {
           </button>
         </form>
 
-        {searchResult.map((element, index) => {
-          return (
-            <li key={index}>
-              <div>
-                <img src={element.image} />
-              </div>
-              <p>
-                {element.title}
-              </p>
-              <div>
-                {element.author}
-              </div>
-            </li>
-          )
-        })}
+        {searchResult && searchResult.map((book) => <Book key={book.title} book={book} />)}
       </Layout>
     </>
   )
