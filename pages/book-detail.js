@@ -10,7 +10,7 @@ const BookDetail = () => {
       <p>{router.query.title}</p>
       <p>{router.query.author}</p>
       <p>{router.query.caption}</p>
-      <div><a>{router.query.itemUrl}</a></div>
+      <Link href={router.query.itemUrl}><a className="text-yellow-500" target="_blank">商品を見に行く</a></Link>
     </div>
   )
 }
