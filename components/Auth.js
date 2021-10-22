@@ -44,15 +44,16 @@ const Auth = () => {
       login();
     } else {
       try {
-        await fetch(
-          `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/register/`, {
+        const url = `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/register/`;
+        const params = {
           method: "POST",
           body: JSON.stringify({ username: username, password: password }),
           headers: {
             "Content-Type": "application/json",
-          },
-        }).then((res) => {
-          if (res.status === 400) {
+          }
+        };
+        await fetch(url, params).then((res) => {
+          if (res.status === 401) {
             throw "ユーザー登録に失敗しました";
           }
         });
